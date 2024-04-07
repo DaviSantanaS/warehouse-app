@@ -4,7 +4,8 @@
 <% @warehouses.each do |w|%>
   <div id="galpao">
     <ul>
-      Nome: <%= w.name %>
+      Nome: <%= link_to(w.name, warehouse_path(w.id)) %>
+
       Código: <%= w.code %>
       Cidade: <%= w.city %>
       Área: <%= w.area %> m2
