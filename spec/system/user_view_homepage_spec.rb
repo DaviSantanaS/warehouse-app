@@ -6,7 +6,7 @@ describe 'O usuario visita a tela inicial' do
   it 'e vê o nome da app' do
     # arrange
     # act
-    visit('/')
+    visit(root_path)
 
     # assert
     expect(page).to have_content('Galpões & Estoque')
@@ -21,7 +21,7 @@ describe 'O usuario visita a tela inicial' do
 
 
     # act
-    visit('/')
+    visit(root_path)
 
     # assert
     'garantir que eu vejo na tela o nome dos galpões Rio e Maceio'
@@ -41,7 +41,7 @@ describe 'O usuario visita a tela inicial' do
     # arrange
 
     # act
-    visit('/')
+    visit(root_path)
 
     # assert
     expect(page).to have_content("Não existem galpões cadastrados.")
