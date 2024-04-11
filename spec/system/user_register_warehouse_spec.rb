@@ -35,6 +35,7 @@ describe 'Usuário cadastra um galpão' do
 
         #assert
         expect(current_path).to eq(root_path)
+        expect(page).to have_content('Galpão cadastrado com sucesso!')
         expect(page).to have_content('Nome do galpão')
         expect(page).to have_content('Descrição do galpão')
         expect(page).to have_content('1234')

@@ -12,7 +12,7 @@ class WarehousesController < ApplicationController
   def create
     @warehouse = Warehouse.create(warehouse_params)
     if @warehouse.save
-      redirect_to root_path
+      redirect_to root_path, notice: "Galpão cadastrado com sucesso!"
     else
       render :new
     end
