@@ -5,7 +5,7 @@ class WarehousesController < ApplicationController
   end
 
   def new
-    # @warehouse = Warehouse.new
+    @warehouse = Warehouse.new
   end
 
 
@@ -14,7 +14,8 @@ class WarehousesController < ApplicationController
     if @warehouse.save
       redirect_to root_path, notice: "Galpão cadastrado com sucesso!"
     else
-      render :new
+      flash.now[:notice] = "Erro ao cadastrar galpão!"
+      render 'new'
     end
 
   end

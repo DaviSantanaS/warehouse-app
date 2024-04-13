@@ -16,8 +16,25 @@ describe 'O usuario visita a tela inicial' do
 
     # arrange
     # cadastrar 2 galpoes: Rio e Maceio
-    Warehouse.create(name: 'Rio', code: 'SDU', city: 'Rio de Janeiro', area: 60_000)
-    Warehouse.create(name: 'Maceio', code: 'MCZ', city: 'Maceio', area: 50_000)
+    Warehouse.create(
+      name: 'Rio',
+      code: 'SDU',
+      city: 'Rio de Janeiro',
+      area: 60000,
+      address: 'Avenida Principal, 123',
+      cep: '20000-000',
+      description: 'Galpão localizado no centro da cidade do Rio de Janeiro'
+    )
+    
+    Warehouse.create(
+      name: 'Maceio',
+      code: 'MCZ',
+      city: 'Maceio',
+      area: 50000,
+      address: 'Rua das Palmeiras, 456',
+      cep: '57000-000',
+      description: 'Armazém moderno na cidade de Maceió'
+    )
 
 
     # act

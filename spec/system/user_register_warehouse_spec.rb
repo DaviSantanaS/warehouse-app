@@ -26,7 +26,7 @@ describe 'Usuário cadastra um galpão' do
         click_on 'Cadastrar Galpão'
         fill_in 'Nome', with: 'Nome do galpão'
         fill_in 'Descrição', with: 'Descrição do galpão'
-        fill_in 'Código', with: '1234'
+        fill_in 'Código', with: 'CDG'
         fill_in 'Endereço', with: 'Endereço do galpão'
         fill_in 'Cidade', with: 'Cidade do galpão'
         fill_in 'CEP', with: '12345-678'
@@ -43,5 +43,26 @@ describe 'Usuário cadastra um galpão' do
         expect(page).to have_content('Cidade do galpão')
         expect(page).to have_content('12345-678')
         expect(page).to have_content('12345 m2')
+    end
+
+    it 'com dados inválidos' do
+        #arrange
+        
+        #act
+        visit root_path
+        click_on 'Cadastrar Galpão'
+
+        fill_in 'Nome', with: 'Nome do galpão'
+        fill_in 'Descrição', with: 'Descrição do galpão'
+        fill_in 'Código', with: '1234'
+        fill_in 'Endereço', with: 'Endereço do galpão'
+        fill_in 'Cidade', with: 'Cidade do galpão'
+        fill_in 'CEP', with: ''
+        fill_in 'Área', with: ''
+        click_on 'Cadastrar'
+        
+        #assert
+        expect(page).to have_content('Erro ao cadastrar galpão!')
+
     end
 end
