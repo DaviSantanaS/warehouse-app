@@ -94,6 +94,7 @@ describe 'Usuário edita um galpão' do
     # Assert
     expect(page).to have_content('Editar Galpão')
     expect(page).to have_content('Erro ao atualizar galpão!')
+    expect(page).to have_content('Nome não pode ficar em branco')
   end
 
 
