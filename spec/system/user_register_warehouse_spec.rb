@@ -31,7 +31,7 @@ describe 'Usuário cadastra um galpão' do
         fill_in 'Cidade', with: 'Cidade do galpão'
         fill_in 'CEP', with: '12345-678'
         fill_in 'Área', with: '12345'
-        click_on 'Cadastrar'
+        click_on 'Criar Galpão'
 
         #assert
         expect(current_path).to eq(root_path)
@@ -59,7 +59,7 @@ describe 'Usuário cadastra um galpão' do
         fill_in 'Cidade', with: ''
         fill_in 'CEP', with: ''
         fill_in 'Área', with: ''
-        click_on 'Cadastrar'
+        click_on 'Criar Galpão'
         
         #assert
         expect(page).to have_content('Erro ao cadastrar galpão!')

@@ -17,11 +17,24 @@ class WarehousesController < ApplicationController
       flash.now[:notice] = "Erro ao cadastrar galpão!"
       render 'new'
     end
+  end
 
+  def edit
+    @warehouse = Warehouse.find(params[:id])
+  end
+
+  def update
+    @warehouse = Warehouse.find(params[:id])
+    if @warehouse.update(warehouse_params)
+      redirect_to root_path, notice: "Galpão atualizado com sucesso!"
+    else
+      flash.now[:notice] = "Erro ao atualizar galpão!"
+      render 'edit'
+    end
   end
 
   def warehouse_params
-    params.require(:warehouse).permit(:name, :address, :city, :state, :cep,
+    params.require(:warehouse).permit(:name, :address, :city, :cep,
                                       :area, :description, :code)
   end
 end

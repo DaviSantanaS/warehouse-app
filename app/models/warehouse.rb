@@ -3,6 +3,5 @@ class Warehouse < ApplicationRecord
     validates :code , length: { is: 3 }
     validates :code, uniqueness:true
     validates :name, uniqueness:true
-    
 
 end
