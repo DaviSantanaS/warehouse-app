@@ -1,8 +1,7 @@
 require 'rails_helper'
 
-
 describe 'O usuario visita a tela inicial' do
-
+  # binding.pry
   it 'e vê o nome da app' do
     # arrange
     # act
@@ -16,7 +15,7 @@ describe 'O usuario visita a tela inicial' do
 
     # arrange
     # cadastrar 2 galpoes: Rio e Maceio
-    Warehouse.create(
+    Warehouse.create!(
       name: 'Rio',
       code: 'SDU',
       city: 'Rio de Janeiro',
@@ -26,7 +25,7 @@ describe 'O usuario visita a tela inicial' do
       description: 'Galpão localizado no centro da cidade do Rio de Janeiro'
     )
     
-    Warehouse.create(
+    Warehouse.create!(
       name: 'Maceio',
       code: 'MCZ',
       city: 'Maceio',

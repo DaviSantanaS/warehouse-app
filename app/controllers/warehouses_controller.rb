@@ -1,8 +1,8 @@
 class WarehousesController < ApplicationController
 
-  def show
-    @warehouse = Warehouse.find(params[:id])
-  end
+  before_action :set_warehouse, only: [:show, :edit, :update, :destroy]
+
+  def show; end
 
   def new
     @warehouse = Warehouse.new
@@ -19,12 +19,9 @@ class WarehousesController < ApplicationController
     end
   end
 
-  def edit
-    @warehouse = Warehouse.find(params[:id])
-  end
+  def edit; end
 
   def update
-    @warehouse = Warehouse.find(params[:id])
     if @warehouse.update(warehouse_params)
       redirect_to root_path, notice: "Galpão atualizado com sucesso!"
     else
@@ -33,8 +30,22 @@ class WarehousesController < ApplicationController
     end
   end
 
+
+
+  def destroy
+    if @warehouse.destroy
+      redirect_to root_path, notice: "Galpão removido com sucesso!"
+    else
+      render 'show'
+    end
+  end
+
+  private
   def warehouse_params
     params.require(:warehouse).permit(:name, :address, :city, :cep,
                                       :area, :description, :code)
+  end
+  def set_warehouse
+    @warehouse = Warehouse.find(params[:id])
   end
 end
