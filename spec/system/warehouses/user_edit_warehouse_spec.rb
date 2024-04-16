@@ -1,9 +1,9 @@
-require 'spec_helper'
+require 'rails_helper'
 require 'pry'
 
 describe 'Usuário edita um galpão' do
   it 'a partir da pagina de detalhes' do
-    # Arrange 
+    # Arrange
     Warehouse.create!(
       name: 'Aeroporto test',
       code: 'TST',
@@ -13,7 +13,7 @@ describe 'Usuário edita um galpão' do
       cep: '15000-000',
       description: 'Galpao destinado para cargas internacionais'
     )
-    
+
     # Act
     visit(root_path)
     click_on('Aeroporto test')
