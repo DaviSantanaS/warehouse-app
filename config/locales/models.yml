@@ -3,6 +3,7 @@ pt-BR:
     models:
       warehouse: "Galpão"
       supplier: "Fornecedor"
+      product_models: "Modelo de Produto"
     attributes:
       warehouse:
         name: "Nome"
@@ -20,3 +21,12 @@ pt-BR:
         city: "Cidade"
         state: "Estado"
         email: "E-mail"
+      product_model:
+        name: "Nome"
+        weight: "Peso"
+        height: "Altura"
+        width: "Largura"
+        depth: "Profundidade"
+        supplier: "Fornecedor"
+        warehouse: "Galpão"
+        sku: "Numero de série"
