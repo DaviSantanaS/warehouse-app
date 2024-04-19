@@ -1,5 +1,7 @@
 <h1>Modelos de Produtos</h1>
 
+<%= link_to 'Cadastrar modelo de produto', new_product_model_path %>
+
 <% if @product_models.any?%>
   <table>
     <thead>
@@ -17,10 +19,9 @@
           <td><%= product_model.supplier.brand_name %></td>
         </tr>
       <%end%>
-    </tbody>    
+    </tbody>
+  </table>
 
 <%else%>
-
-<p>Nenhum modelo de produto cadastrado</p>
-
+  <p>Nenhum modelo de produto cadastrado</p>
 <%end%>
