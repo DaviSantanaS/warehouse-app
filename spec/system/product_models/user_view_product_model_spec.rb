@@ -1,10 +1,30 @@
 require 'rails_helper'
 
 describe 'User view product model' do
-  it 'from menu' do
-    
+
+  it 'if logged in' do
+
     visit root_path
-    within('nav') do 
+    within('nav') do
+      click_on 'Modelos de Produtos'
+    end
+
+    expect(current_path).to eq(new_user_session_path)
+
+  end
+
+
+  it 'from menu' do
+    user = User.create!(
+      name: 'user',
+      email: 'user@email.com',
+      password: 'userpassword'
+    )
+
+    
+    login_as user, scope: :user
+    visit root_path
+    within('nav') do
       click_on 'Modelos de Produtos'
     end
 
@@ -39,24 +59,36 @@ describe 'User view product model' do
       length: 300, 
       sku: 'SB123-SAMS', 
       supplier: Supplier.first
-      )  
+      )
 
+    user = User.create!(
+      name: 'user',
+      email: 'user@email.com',
+      password: 'userpassword'
+    )
 
-      visit root_path
-      within('nav') do
-        click_on 'Modelos de Produtos'
-      end
+    login_as user, scope: :user
+    visit root_path
+    within('nav') do
+      click_on 'Modelos de Produtos'
+    end
 
-      expect(page).to have_content('TV 32')
-      expect(page).to have_content('Soundbar Pro')
-      expect(page).to have_content('Samsung')
-      expect(page).to have_content('TV32-SAMS')
-      expect(page).to have_content('SB123-SAMS')
+    expect(page).to have_content('TV 32')
+    expect(page).to have_content('Soundbar Pro')
+    expect(page).to have_content('Samsung')
+    expect(page).to have_content('TV32-SAMS')
+    expect(page).to have_content('SB123-SAMS')
 
   end
 
   it 'and there are no registered product models' do
+    user = User.create!(
+      name: 'user',
+      email: 'user@email.com',
+      password: 'userpassword'
+    )
 
+    login_as user, scope: :user
     visit root_path
     click_on 'Modelos de Produtos'
 

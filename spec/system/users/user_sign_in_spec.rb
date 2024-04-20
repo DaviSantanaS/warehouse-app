@@ -4,6 +4,7 @@ describe 'User sign in' do
   it 'successfully' do
 
     User.create!(
+      name: 'user',
       email: 'user@email.com',
       password: 'userpassword'
     )
@@ -27,6 +28,7 @@ describe 'User sign in' do
 
   it 'and log out' do
     User.create!(
+      name: 'user',
       email: 'user@email.com',
       password: 'userpassword'
     )

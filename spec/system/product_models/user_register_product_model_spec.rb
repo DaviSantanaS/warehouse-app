@@ -11,7 +11,13 @@ describe 'User register product model' do
       state: 'SP',
       email: 'samsung@samsung.com',
       )
+    user = User.create!(
+      name: 'user',
+      email: 'user@email.com',
+      password: 'userpassword'
+    )
 
+    login_as user, scope: :user
     visit root_path
     click_on 'Modelos de Produtos'
     click_on 'Cadastrar modelo de produto'
@@ -45,7 +51,13 @@ describe 'User register product model' do
       state: 'SP',
       email: 'samsung@samsung.com',
       )
+    user = User.create!(
+      name: 'user',
+      email: 'user@email.com',
+      password: 'userpassword'
+    )
 
+    login_as user, scope: :user
     visit root_path
     click_on 'Modelos de Produtos'
     click_on 'Cadastrar modelo de produto'
