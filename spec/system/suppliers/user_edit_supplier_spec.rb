@@ -63,8 +63,6 @@ describe 'User edit supplier' do
     expect(page).to have_content('Empresa ABC Ltda.')
     expect(page).to have_content('contato@empresaabc.com')
 
-
-
   end
 
 end

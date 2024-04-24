@@ -17,6 +17,7 @@
         <li><%= link_to 'Home', root_path %></li>
         <li><%= link_to 'Fornecedores', suppliers_path %></li>
         <li><%= link_to 'Modelos de Produtos', product_models_path %></li>
+        <li><%= link_to 'Registrar Pedido', new_order_path %></li>
         <% if user_signed_in?%>
           <li><%= current_user.email %></li>
           <li><%= button_to 'Sair', destroy_user_session_path, method: :delete%></li>
