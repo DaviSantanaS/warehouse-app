@@ -57,6 +57,7 @@ describe 'Usuario cadastra um pedido' do
       state: 'CA',
       email: 'apple@apple.com'
     )
+    allow(SecureRandom).to receive(:alphanumeric).and_return('ABC12345')
 
     login_as user, scope: :user
     visit root_path
@@ -67,6 +68,7 @@ describe 'Usuario cadastra um pedido' do
     click_on 'Gravar'
 
     expect(page).to have_content('Pedido cadastrado com sucesso')
+    expect(page).to have_content("Pedido ABC12345")
     expect(page).to have_content('Galpão Destino: Galpao Praia - RMV')
     expect(page).to have_content('Fornecedor: Apple - Apple Inc.')
     expect(page).to have_content('Data de Entrega Estimada: 01/01/2025')
