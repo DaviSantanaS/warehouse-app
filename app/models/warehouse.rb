@@ -4,4 +4,8 @@ class Warehouse < ApplicationRecord
     validates :code, uniqueness:true
     validates :name, uniqueness:true
 
+    def full_description
+        "#{name} - #{code}"
+    end
+
 end

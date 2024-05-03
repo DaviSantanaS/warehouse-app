@@ -2,22 +2,20 @@ require 'rails_helper'
 
 describe 'Usuario cadastra um pedido' do
 
+  it 'e deve estar autenticado' do
+
+    visit root_path
+    click_on 'Registrar Pedido'
+
+    expect(current_path).to eq(new_user_session_path)
+  end
+
   it 'com sucesso' do
 
     user = User.create!(
       name: 'Testador',
       email: 'test@email.com',
       password: '123456'
-    )
-
-    warehouse =   Warehouse.create!(
-      name: 'Galpao Praia',
-      code: 'RMV',
-      city: 'Testst',
-      area: 100_000,
-      address: 'Avenida do Aeroporto, 1000',
-      cep: '15000-000',
-      description: 'Galpao destinado para cargas internacionais'
     )
 
     warehouse2 = Warehouse.create!(
@@ -28,6 +26,16 @@ describe 'Usuario cadastra um pedido' do
       address: 'Avenida do Aeroporto, 2000',
       cep: '25000-000',
       description: 'Galpao destinado para cargas nacionais'
+    )
+
+    warehouse =   Warehouse.create!(
+      name: 'Galpao Praia',
+      code: 'RMV',
+      city: 'Testst',
+      area: 100_000,
+      address: 'Avenida do Aeroporto, 1000',
+      cep: '15000-000',
+      description: 'Galpao destinado para cargas internacionais'
     )
 
     supplier =  Supplier.create!(
@@ -53,19 +61,18 @@ describe 'Usuario cadastra um pedido' do
     login_as user, scope: :user
     visit root_path
     click_on 'Registrar Pedido'
-    select warehouse.name, from: 'Galpão Destino'
-    select supplier.corporate_name, from: 'Fornecedor'
-    fill_in 'Data Prevista', with: '01/01/2025'
+    select "Galpao Praia - RMV", from: 'Galpão Destino'
+    select "Apple - Apple Inc.", from: 'Fornecedor'
+    fill_in 'Data de Entrega Estimada', with: '01/01/2025'
     click_on 'Gravar'
 
     expect(page).to have_content('Pedido cadastrado com sucesso')
-    expect(page).to have_content(warehouse.name)
-    expect(page).to have_content(supplier.corporate_name)
-    expect(page).to have_content('01/01/2025')
-    expect(page).to have_content('Usuario Responsavel: Testador')
+    expect(page).to have_content('Galpão Destino: Galpao Praia - RMV')
+    expect(page).to have_content('Fornecedor: Apple - Apple Inc.')
+    expect(page).to have_content('Data de Entrega Estimada: 01/01/2025')
+    expect(page).to have_content('Usuario Responsavel: Testador - test@email.com')
     expect(page).not_to have_content(warehouse2.name)
-    expect(page).not_to have_content(supplier2.corporate_name)
-
+    expect(page).not_to have_content(supplier.corporate_name)
 
 
   end

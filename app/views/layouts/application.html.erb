@@ -11,7 +11,9 @@
 
   <body>
   <header>
-    <h1>Galpões & Estoque</h1>
+    <%= link_to root_path do %>
+      <h1>Galpões & Estoque</h1>
+    <% end %>
     <nav>
       <ul>
         <li><%= link_to 'Home', root_path %></li>
@@ -19,7 +21,7 @@
         <li><%= link_to 'Modelos de Produtos', product_models_path %></li>
         <li><%= link_to 'Registrar Pedido', new_order_path %></li>
         <% if user_signed_in?%>
-          <li><%= current_user.email %></li>
+          <li><%= current_user.description %></li>
           <li><%= button_to 'Sair', destroy_user_session_path, method: :delete%></li>
         <% else %>
           <li><%= link_to 'Entrar', new_user_session_path %></li>

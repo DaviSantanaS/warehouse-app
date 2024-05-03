@@ -20,7 +20,7 @@ describe 'User sign in' do
     expect(page).not_to have_link('Entrar')
     expect(page).to have_button('Sair')
     within('nav') do
-      expect(page).to have_content('user@email.com')
+      expect(page).to have_content('user - user@email.com')
     end
     expect(page).to have_content('Login efetuado com sucesso.')
 
