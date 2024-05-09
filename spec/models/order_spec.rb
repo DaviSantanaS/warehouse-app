@@ -30,11 +30,52 @@ RSpec.describe Order, type: :model do
       )
 
       order = Order.new(user: user, warehouse: warehouse,
-                            supplier: supplier, estimated_delivery_date: '2022-12-25')
+                            supplier: supplier, estimated_delivery_date: 1.day.from_now)
 
 
       expect(order.valid?).to eq(true)
     end
+
+    it 'data estimada de entrega deve ser obrigatoria' do
+
+      order = Order.new(estimated_delivery_date: nil)
+
+      order.valid?
+      result = order.errors.include?(:estimated_delivery_date)
+
+      expect(result).to eq(true)
+    end
+
+    it 'data estimada de entrega não deve ser passada' do
+      order = Order.new(estimated_delivery_date: 1.day.ago)
+
+      order.valid?
+      result = order.errors.include?(:estimated_delivery_date)
+
+      expect(result).to eq(true)
+      expect(order.errors[:estimated_delivery_date]).to include('deve ser futura')
+    end
+
+    it 'data estimada de entrega não deve ser igual a hoje' do
+      order = Order.new(estimated_delivery_date: 1.day.today)
+
+      order.valid?
+      result = order.errors.include?(:estimated_delivery_date)
+
+      expect(result).to eq(true)
+      expect(order.errors[:estimated_delivery_date]).to include('deve ser futura')
+    end
+
+    it 'data estimada de entrega deve ser futura' do
+      order = Order.new(estimated_delivery_date: 1.day.from_now)
+
+      order.valid?
+      result = order.errors.include?(:estimated_delivery_date)
+
+      expect(result).to eq(false)
+      expect(order.valid?).to eq(true)
+    end
+
   end
 
   describe "gera um codigo aleatorio" do
@@ -66,7 +107,7 @@ RSpec.describe Order, type: :model do
     )
 
     order = Order.create!(user: user, warehouse: warehouse,
-                          supplier: supplier, estimated_delivery_date: '2022-12-25')
+                          supplier: supplier, estimated_delivery_date: 1.day.from_now)
 
 
     expect(order.code).not_to be_empty
@@ -102,9 +143,9 @@ RSpec.describe Order, type: :model do
       )
 
       order = Order.create!(user: user, warehouse: warehouse,
-                        supplier: supplier, estimated_delivery_date: '2022-12-25')
+                        supplier: supplier, estimated_delivery_date: 1.day.from_now)
       order2 = Order.create!(user: user, warehouse: warehouse,
-                        supplier: supplier, estimated_delivery_date: '2023-11-15')
+                        supplier: supplier, estimated_delivery_date: 1.day.from_now)
 
       expect(order.code).not_to eq(order2.code)
 

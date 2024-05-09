@@ -76,7 +76,6 @@ describe 'Usuario cadastra um pedido' do
     expect(page).not_to have_content(warehouse2.name)
     expect(page).not_to have_content(supplier.corporate_name)
 
-
   end
 
 
